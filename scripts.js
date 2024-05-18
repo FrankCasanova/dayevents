@@ -5,22 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             eventsContainer.innerHTML = '';
-            if (data.events && data.events.length > 0) {
-                data.events.forEach(event => {
+            if (data.length > 0) {
+                data.forEach(event => {
                     const eventElement = document.createElement('div');
                     eventElement.classList.add('event');
-
-                    const titleElement = document.createElement('div');
-                    titleElement.classList.add('event-title');
-                    titleElement.textContent = event.title;
-
-                    const dateElement = document.createElement('div');
-                    dateElement.classList.add('event-date');
-                    dateElement.textContent = event.date;
-
-                    eventElement.appendChild(titleElement);
-                    eventElement.appendChild(dateElement);
-
+                    eventElement.textContent = event;
                     eventsContainer.appendChild(eventElement);
                 });
             } else {
@@ -32,3 +21,4 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching events:', error);
         });
 });
+
